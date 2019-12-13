@@ -103,6 +103,8 @@ var content = {
             $("body").css("height", "100vh");
             $("body").prepend('<div class="infoloading"><div class="text">Loading...</div></div>');
             if(!_this.checkLink()){
+                $("body").find("*").off();
+                 $("html").off("click");
                 $(".infoloading").html('<div class="text">No events! try reload later</div></div>')
                 return false;
             }
@@ -230,10 +232,9 @@ var content = {
         var _this = this;
         $(function () {
             setTimeout(function () {
-                _this.cleanBody();
-                console.log("TRANSVERSAL")
+                _this.cleanBody();               
                 _this.traverseTable();
-                console.log("CLEANING")
+              
                 $("nav").remove();
                 $(".title").remove();
                 $("html").removeClass("loading");
@@ -304,7 +305,7 @@ var content = {
         var timeRefresh = $("table tr").last().find("td:nth-child(3)").text();
         var dateLocalRefresh = _this.localDate(dateRefresh + " " + timeRefresh.split(" ")[0]);
 
-        console.log(dateRefresh,timeRefresh,dateLocalRefresh);
+      
 
         if (localStorage.getItem("updateDate")) {
             if (moment(dateLocalRefresh, "DD/MM/YYYY HH:mm").isAfter(moment(localStorage.getItem("updateDate"), "DD/MM/YYYY HH:mm"))) {
