@@ -1,0 +1,122 @@
+html {
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
+}
+html, body {
+    /* For the loading indicator to be vertically centered ensure */
+    /* the html and body elements take up the full viewport */
+    min-height: 100%;
+    height: 100%;
+}
+html.loading {
+    /* Replace #333 with the background-color of your choice */
+    /* Replace loading.gif with the loading image of your choice */
+
+
+    /* Ensures that the transition only runs in one direction */
+    -webkit-transition: background-color 0;
+    transition: background-color 0;
+}
+body {
+    -webkit-transition: opacity 1s ease-in;
+    transition: opacity 1s ease-in;
+}
+html.loading body {
+    /* Make the contents of the body opaque during loading */
+    opacity: 1;
+
+    /* Ensures that the transition only runs in one direction */
+    -webkit-transition: opacity 1;
+    transition: opacity 1;
+    height: 100vh !important;
+    display:none;
+    background:white;
+}
+
+.infoloading {
+    /* Make the contents of the body opaque during loading */
+   
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+ 
+    background: #fff url('chrome-extension://__MSG_@@extension_id__/icons/loading.gif') no-repeat 50% 50%;
+    
+}
+
+.infoloading .text{
+     font-size: 40px;
+    text-align: center;
+    margin-top:130px;
+       color:black;
+    
+    
+}
+
+
+.green{
+    color:greenyellow;
+}
+.link{
+    font-size:14px;
+    line-height: 52px;
+    display:block;
+    width: 80px;
+    margin-left: 50px;
+   
+
+}
+.mylng{
+    font-size:16px;
+    font-weight: bold; 
+    padding-bottom: 5px;    
+}
+.center{
+    text-align: center;
+}
+
+.link span{  
+     display:block;
+     height: 24px;
+     width: 24px;
+    background: url('chrome-extension://__MSG_@@extension_id__/icons/play.png') no-repeat;  
+    
+}
+
+.por{
+      
+    background: url('chrome-extension://__MSG_@@extension_id__/icons/por.png') no-repeat;
+    background-position: 30px 5px;
+}
+.eng{
+    
+    background: url('chrome-extension://__MSG_@@extension_id__/icons/eng.png') no-repeat;
+    background-position: 30px 5px;
+}
+.spa{
+      
+    background: url('chrome-extension://__MSG_@@extension_id__/icons/spa.png') no-repeat;
+   background-position: 30px 5px;
+
+}
+.ger{
+    
+    background: url('chrome-extension://__MSG_@@extension_id__/icons/ger.png') no-repeat;
+    background-position: 30px 5px;
+}
+
+.dut{
+    
+    background: url('chrome-extension://__MSG_@@extension_id__/icons/ger.png') no-repeat;
+    background-position: 30px 5px;
+}
+
+.fre{
+     
+    background: url('chrome-extension://__MSG_@@extension_id__/icons/fre.png') no-repeat;
+    background-position: 30px 5px;
+}

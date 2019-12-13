@@ -1,0 +1,29 @@
+{
+    "name": "Futbol my way",
+    "version": "1.0",
+    "description": "Futbol on my way",
+    "icons":{"16":"icons/icon16.png",
+             "48":"icons/icon48.png",
+             "128":"icons/icon128.png"
+    },
+    "browser_action": {
+        "default_title": "futbol online",
+        "default_icon": "icons/icon.png",
+        "default_popup": "popup.html"
+    },
+    "web_accessible_resources": [
+        "icons/*",
+        "config.json"
+    ],
+    "permissions": ["storage","webRequest","tabs", "*://*/*","system.display","webRequestBlocking","nativeMessaging"],    
+    "content_scripts": [{
+            "js": ["js/jquery.min.js","js/moment.js", "js/content.js"],
+            "css":["css/style.css"],
+            "matches": ["*://*/*"],
+            "run_at":"document_start"
+        }],    
+    "background": {
+        "scripts": ["js/background.js"]    
+    },     
+    "manifest_version": 2
+}
