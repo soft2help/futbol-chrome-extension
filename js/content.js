@@ -102,7 +102,12 @@ var content = {
             $("body").css("display", "block");
             $("body").css("height", "100vh");
             $("body").prepend('<div class="infoloading"><div class="text">Loading...</div></div>');
-            _this.checkLink();
+            if(!_this.checkLink()){
+                $(".infoloading").html('<div class="text">No events! try reload later</div></div>')
+                return false;
+            }
+                
+
             _this.onReady();
             
         });
@@ -188,11 +193,15 @@ var content = {
         return  moment(utcTimeEvent).format("DD/MM/YYYY HH:mm");
     },
     checkLink: function () {
+       
         let eventguide=$(".menu li.leaf a:contains('EVENTS GUIDE')").attr("href");
+        if(!eventguide)
+            return false;
        
         if (location.pathname != eventguide) {
             window.location = eventguide;
         }
+        return true;
     },
     cleanBody: function () {
         //        var highestTimeoutId = setTimeout(";");
