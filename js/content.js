@@ -142,7 +142,7 @@ var content = {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
-                console.log(xhr.response);
+               
                 var configs = JSON.parse(xhr.response);
 
                 var domains=configs.domains;
@@ -150,7 +150,7 @@ var content = {
                     domains = _this.cleanArray(configs.domains.concat(_this.configs.domains.split(";")));
                
                 if ($.inArray(document.domain.toLowerCase(), domains) !== -1) {
-                     chrome.runtime.sendMessage({fn: "init"});
+                    chrome.runtime.sendMessage({fn: "init"});
                     _this.init();
                     return;
                 }
@@ -212,6 +212,7 @@ var content = {
         //        }
 
         var html = $("body").html();
+      
        
         $("body").append("<div id='scrapping'>" + html + "</div>");
         $("#scrapping").find("script").remove();
@@ -232,7 +233,8 @@ var content = {
         var _this = this;
         $(function () {
             setTimeout(function () {
-                _this.cleanBody();               
+                _this.cleanBody();     
+                console.log("TRANSVERSE TABLE");          
                 _this.traverseTable();
               
                 $("nav").remove();
@@ -266,8 +268,10 @@ var content = {
             acestream = _this.channels[channel];
         } else {
             let url=_this.hrefChannels[channel];
+            console.log(channel,url);
         
             $.get(url, function (data) {
+                console.log(data);
                 acestream = $(data).find("a[href*='acestream:']").attr("href");
                 _this.channels[channel] = acestream;
             });
@@ -301,22 +305,20 @@ var content = {
 
         $.ajaxSetup({async: false});
 
-        var dateRefresh = $("table tr").last().find("td:nth-child(2)").text();
-        var timeRefresh = $("table tr").last().find("td:nth-child(3)").text();
-        var dateLocalRefresh = _this.localDate(dateRefresh + " " + timeRefresh.split(" ")[0]);
-
+        // s
       
+        localStorage.clear();
 
-        if (localStorage.getItem("updateDate")) {
-            if (moment(dateLocalRefresh, "DD/MM/YYYY HH:mm").isAfter(moment(localStorage.getItem("updateDate"), "DD/MM/YYYY HH:mm"))) {
-                localStorage.clear();
-            }
-        }
+        // if (localStorage.getItem("updateDate")) {
+        //     if (moment(dateLocalRefresh, "DD/MM/YYYY HH:mm").isAfter(moment(localStorage.getItem("updateDate"), "DD/MM/YYYY HH:mm"))) {
+        //         localStorage.clear();
+        //     }
+        // }
 
-        localStorage.setItem("updateDate", dateLocalRefresh);
+        //localStorage.setItem("updateDate", dateLocalRefresh);
 
 
-      
+      console.log("CHANNELS")
         
         $(".menu li a").each(function (index, element) {           
             
@@ -329,14 +331,15 @@ var content = {
             canal=canal.match(/\d+/)[0];
 
             _this.hrefChannels[canal]=href;    
-            //console.log(href,canal);
+            console.log(href,canal);
           
             
         });
-
+        console.log("TABLA")
         
         $("table tr").each(function (index, element) {
-            if(index==0){
+            console.log(index,element);
+            if(index==0 || index==1){
                 $(element).find("td:nth-child(6)").remove();
                 return true;
             }
@@ -346,6 +349,7 @@ var content = {
                     time = $(element).find("td:nth-child(2)").text();
 
            
+            console.log(channels,date,time);
             
             $(".infoloading .text").text($(element).find("td:nth-child(5)").text());
 
