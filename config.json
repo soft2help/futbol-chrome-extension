@@ -1,5 +1,5 @@
 {
-    "domains": ["arenavision.site"],
+    "domains": [""],
     "redirects":{                
                  "":""        
                 }
